@@ -1,0 +1,12 @@
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(20, 6, 48);
+    height: 220px;
+}
+.footer a{
+   color: aliceblue;
+   text-decoration: none;
+   
+}
