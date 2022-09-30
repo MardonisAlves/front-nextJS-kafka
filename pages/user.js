@@ -1,60 +1,92 @@
-import styles from './../styles/User.module.css'
+import { useState } from 'react';
+import styles from './../styles/User.module.css';
+
 export default function User() {
+  const [message, setMessage] = useState([]);
+  const [first_name, setFirstname] = useState('');
+  const [last_name, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  
+
+  const resetInputs = async () => {
+    setFirstname({first_name: ''})
+    setLastname({last_name:''})
+    setEmail({email:''})
+    setPhone({phone:''})
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
-      first_name: event.target.first_name.value,
-      last_name:  event.target.last_name.value,
-      email:  event.target.email.value,
-      phone:  event.target.phone.value
+      first_name: first_name.first_name,
+      last_name: last_name.last_name,
+      email: email.email,
+      phone: phone.phone
     }
 
-    const JSONdata  = JSON.stringify(data);
+    const JSONdata = JSON.stringify(data);
     const endpoint = 'http://localhost:3001/api/v1/create/user';
     const options = {
       method: 'POST',
       headers: {
-        'Content-Type': "application/json"
+        "Content-Type": "application/json"
       },
-      body:JSONdata 
+      body: JSONdata
     }
 
     const res = await fetch(endpoint, options);
     const result = await res.json();
-    return alert(`${result.message}`);
+    setMessage([result])
+    resetInputs()
+    setTimeout(() => {
+      setMessage({message: ''})
+    },5000)
   }
   return (
     <div>
       <div>
         <h3>Novo Cliente</h3>
+        <ul className={styles.user_client}>
+          {message.length > 0 ? message.map(item => {
+           return <li>{item.message}</li>
+          }) : ''}
+        </ul>
       </div>
       <div>
         <form onSubmit={handleSubmit}>
           <ul className={styles.flex_outer}>
             <li>
-              <label for="first-name">First Name</label>
+              <label htmlFor="first-name">First Name</label>
               <input type="text" id="first_name"
                 placeholder="Enter your first name here"
-                name="first_name" required />
+                name="first_name" required
+                value={first_name.first_name}
+                onChange={(e) => setFirstname({ first_name: e.target.value })} />
             </li>
             <li>
-              <label for="last-name">Last Name</label>
+              <label htmlFor="last-name">Last Name</label>
               <input type="text" id="last_name"
                 placeholder="Enter your last name here"
-                name="last_name" required />
+                name="last_name" required
+                value={last_name.last_name}
+                onChange={(e) => setLastname({ last_name: e.target.value })} />
             </li>
             <li>
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input type="email" id="email"
                 placeholder="Enter your email here"
-                name="email" required />
+                name="email" required
+                value={email.email}
+                onChange={(e) => setEmail({ email: e.target.value })} />
             </li>
             <li>
-              <label for="phone">Phone</label>
+              <label htmlFor="phone">Phone</label>
               <input type="tel" id="phone"
                 placeholder="Enter your phone here"
-                name="phone" required />
+                name="phone" required
+                value={phone.phone}
+                onChange={(e) => setPhone({ phone: e.target.value })} />
             </li>
             <li>
               <button type="submit">Submit</button>
