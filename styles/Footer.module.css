@@ -2,9 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(20, 6, 48);
+    background-color: rgb(21, 1, 23);
     height: 220px;
 }
+
 .footer a{
    color: aliceblue;
    text-decoration: none;

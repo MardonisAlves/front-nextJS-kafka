@@ -1,0 +1,35 @@
+.table {
+    border: 1px solid rgb(89, 85, 85);
+    border-radius: 5px;
+    box-shadow: 2px 1px rgb(25, 24, 24);
+    width: 550px;
+}
+
+.table thead {
+    background-color: rgb(39, 37, 37);
+    color: aliceblue;
+    margin: 10px;
+}
+
+.table .update a {
+    font-size: 15px;
+    color: rgb(16, 95, 231);
+    margin: 1em;
+}
+
+#update   {
+    font-size: 15px;
+    color: rgb(16, 95, 231);
+    margin: 1em;
+}
+
+#delete   {
+    font-size: 15px;
+    color: rgb(240, 47, 12);
+    margin: 1em;
+}
+
+.table td {
+    height: 25px;
+    font-size: 15px;
+}
