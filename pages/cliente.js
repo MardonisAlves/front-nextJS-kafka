@@ -2,8 +2,9 @@ import { useState } from 'react';
 import styles from './../styles/User.module.css';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {CadastroCliente} from './../services/AuthService';
 
-export default function User() {
+export default function Cliente() {
   const [first_name, setFirstname] = useState('');
   const [last_name, setLastname] = useState('');
   const [email, setEmail] = useState('');
@@ -17,10 +18,11 @@ export default function User() {
   }
 
   const handleSubmit = async (event) => {
-    const errnotify = async (msg) => toast.warn(msg , {
+    const errnotify = async (msg) => toast.success(msg , {
       position:'top-center',
       theme:'colored'
     });
+
     event.preventDefault();
     const data = {
       first_name: first_name.first_name,
@@ -28,23 +30,12 @@ export default function User() {
       email: email.email,
       phone: phone.phone
     }
-    
-    
-    const JSONdata = JSON.stringify(data);
-    const endpoint = 'http://localhost:3001/api/v1/create/user';
-    const options = {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSONdata
-    }
-    
-    const res = await fetch(endpoint, options);
-    const result = await res.json();
+
+    const  result = await  CadastroCliente(data);
     resetInputs()
     errnotify(result.message)
   }
+  
   return (
     <div>
       <div>

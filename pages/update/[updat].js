@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {UpdateCliente} from '../../services/AuthService';
 
 export default function Update() {
   const { query } = useRouter();
@@ -48,17 +49,7 @@ export default function Update() {
       email: email,
       phone: phone
     }
-    const JSONdata = JSON.stringify(data);
-      const options = {
-        method: 'PUT',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSONdata
-      }
-
-    const resdata =  await fetch(`${url}update/user/${id}`, options)
-    const result = await resdata.json();
+   const result = await UpdateCliente(data, id);
     if(result.message){
       setMsg(result.message)
       errnotify(result.message);

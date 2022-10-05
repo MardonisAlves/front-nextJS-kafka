@@ -1,12 +1,13 @@
 import Layout from '../components/layout'
-import SideBarLeft from '../components/menu/sidebar-left';
 import '../styles/globals.css';
-
+import AuthProvider from './../context/AuthContext';
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <AuthProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </AuthProvider>
   )
 }

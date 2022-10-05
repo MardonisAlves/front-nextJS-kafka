@@ -1,12 +1,12 @@
 import styles from '../../styles/MainContainer.module.css';
 import Link from 'next/link'
-import SideBarLeft from '../menu/sidebar-left';
+
 
 export default function Main() {
     return (
         <>
             
-            <Link href="/user">
+            <Link href="/cliente">
                 <a>
                     <div className={styles.card1}>
                         <h1>New Client</h1>
