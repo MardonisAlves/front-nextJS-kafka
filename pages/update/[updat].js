@@ -3,30 +3,30 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {UpdateCliente} from '../../services/AuthService';
+import {UpdateCliente, getClienteEmail} from '../../src/services/AuthService';
+
 
 export default function Update() {
   const { query } = useRouter();
   const [queryemail, setQueryEmail] = useState(query.updat);
   const [msg, setMsg] = useState('');
-  const url = 'http://localhost:3001/api/v1/';
   const [first_name, setFirstname] = useState('');
   const [last_name, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [id, setId]= useState('');
  
-  useEffect(() => {
-    fetch(`${url}verificar/user/${queryemail}`)
-      .then(res => res.json()
-        .then(user => {
-            setFirstname(user[0].first_name);
+
+  useEffect( () => {
+       getClienteEmail(queryemail)
+       .then( user => {
+        setFirstname(user[0].first_name);
             setLastname(user[0].last_name);
             setEmail(user[0].email);
             setPhone(user[0].phone);
             setId(user[0].user_id)
             setMsg('')
-        }))
+       })
   },[msg]);
 
   const reset = async () => {

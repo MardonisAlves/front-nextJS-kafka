@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './../styles/User.module.css';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {CadastroCliente} from './../services/AuthService';
+import {CadastroCliente} from './../src/services/AuthService';
 
 export default function Cliente() {
   const [first_name, setFirstname] = useState('');
@@ -11,10 +11,10 @@ export default function Cliente() {
   const [phone, setPhone] = useState('');
 
   const resetInputs = async () => {
-    setFirstname({first_name: ''})
-    setLastname({last_name:''})
-    setEmail({email:''})
-    setPhone({phone:''})
+    setFirstname('')
+    setLastname('')
+    setEmail('')
+    setPhone('')
   }
 
   const handleSubmit = async (event) => {
@@ -22,15 +22,14 @@ export default function Cliente() {
       position:'top-center',
       theme:'colored'
     });
-
-    event.preventDefault();
+    event.preventDefault()
     const data = {
-      first_name: first_name.first_name,
-      last_name: last_name.last_name,
-      email: email.email,
-      phone: phone.phone
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      phone: phone
     }
-
+    
     const  result = await  CadastroCliente(data);
     resetInputs()
     errnotify(result.message)
@@ -50,32 +49,32 @@ export default function Cliente() {
               <input type="text" id="first_name"
                 placeholder="Enter your first name here"
                 name="first_name" required
-                value={first_name.first_name}
-                onChange={(e) => setFirstname({ first_name: e.target.value })} />
+                value={first_name}
+                onChange={(e) => setFirstname(e.target.value)} />
             </li>
             <li>
               <label htmlFor="last-name">Last Name</label>
               <input type="text" id="last_name"
                 placeholder="Enter your last name here"
                 name="last_name" required
-                value={last_name.last_name}
-                onChange={(e) => setLastname({ last_name: e.target.value })} />
+                value={last_name}
+                onChange={(e) => setLastname( e.target.value )} />
             </li>
             <li>
               <label htmlFor="email">Email</label>
               <input type="email" id="email"
                 placeholder="Enter your email here"
                 name="email" required
-                value={email.email}
-                onChange={(e) => setEmail({ email: e.target.value })} />
+                value={email}
+                onChange={(e) => setEmail( e.target.value )} />
             </li>
             <li>
               <label htmlFor="phone">Phone</label>
               <input type="tel" id="phone"
                 placeholder="Enter your phone here"
                 name="phone" required
-                value={phone.phone}
-                onChange={(e) => setPhone({ phone: e.target.value })} />
+                value={phone}
+                onChange={(e) => setPhone( e.target.value )} />
             </li>
             <li>
               <button type="submit">Submit</button>

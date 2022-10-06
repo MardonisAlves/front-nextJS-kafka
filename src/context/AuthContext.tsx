@@ -1,8 +1,8 @@
 import {  createContext, useEffect, useState } from "react";
 import { setCookie, parseCookies } from 'nookies'
-import { AuthContextType, Login, User} from "../interfaces/auth.interface";
-import { AuthService, UserInfomation } from "../services/AuthService";
 import Router from "next/router";
+import { AuthContextType, Login, User} from "./../interfaces/auth.interface";
+import { AuthService, UserInfomation } from "./../services/AuthService";
 
 type MyComponentProps = React.PropsWithChildren<{}>;
 export const AuthContext = createContext({} as AuthContextType);
@@ -15,7 +15,7 @@ export default function AuthProvider({ children}:MyComponentProps){
     useEffect( () => {
         const {'nextauth.token': token, email} = parseCookies();
         if(token){
-            UserInfomation(email).then(response => {
+            UserInfomation(email).then((response:any) => {
                 setUser(response)
             })
         }

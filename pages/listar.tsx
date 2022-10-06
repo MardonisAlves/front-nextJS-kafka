@@ -1,34 +1,34 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from './../styles/Listar.module.css';
+import { deleteCliente, allClientes } from './../src/services/AuthService';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Listar() {
-
     const [data, setData] = useState([]);
-    const [msgdelete, setMsgdelete] = useState('');
-    const url = 'http://localhost:3001/api/v1';
+    const [smg, setMsg] = useState('');
 
     useEffect(() => {
-        fetch(`${url}/all/users`)
-            .then((res) => res.json())
-            .then((data) => {
-                setData(data)
-            })
+        allClientes().then(data => {
+            setData(data)
+        })
+        
+    }, [smg]);
 
-    }, [msgdelete]);
+    const errnotify = async (smg:string) => toast.warning(smg , {
+        position:'top-center',
+        theme:'colored'
+      });
 
-    const deleteCliete = async (id) => {
-        const options = {
-            method: 'DELETE',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        const res = await fetch(`${url}/delete/user/${id}`, options);
-        const result = await res.json();
-        setMsgdelete(result.message);
+    const deleteCliete = async (id: any, event: any) => {
+        event.preventDefault();
+        const result = await deleteCliente(id);
+        setMsg(result.message)
+       await errnotify(smg)
     }
+
     return (
         <>
             <table className={styles.table}>
@@ -38,7 +38,7 @@ export default function Listar() {
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    {data.map((item, index) => {
+                    {data.map((item: any, index) => {
                         return <>
                             <tr>
                                 <td key={index + 1}>{item.first_name}</td>
@@ -48,7 +48,7 @@ export default function Listar() {
                                         <a id={styles.update}>Update</a>
                                     </Link>
                                     <Link href="#">
-                                        <a id={styles.delete} onClick={() => deleteCliete(item.user_id)}>Delete</a>
+                                        <a id={styles.delete} onClick={(e) => deleteCliete(item.user_id, e)}>Delete</a>
                                     </Link>
                                 </td>
                             </tr>
@@ -57,6 +57,7 @@ export default function Listar() {
                     })}
                 </tbody>
             </table>
+            <ToastContainer />
         </>
     )
 }
