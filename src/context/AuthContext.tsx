@@ -22,7 +22,7 @@ export default function AuthProvider({ children}:MyComponentProps){
     },[]);
 
     async function signIn({email, senha}:Login){
-        const {access_token, useremail,} = await AuthService({
+        const {access_token, useremail, status} = await AuthService({
             email, senha
         });
 
@@ -33,8 +33,11 @@ export default function AuthProvider({ children}:MyComponentProps){
         setCookie(undefined, 'email', useremail,{
             maxAge: 60 * 60 * 1, // 1hour
         });
+        setCookie(undefined, 'status', status,{
+            maxAge: 60 * 60 * 1, // 1hour
+        });
 
-        setUser(user);
+       
         Router.push('/home')
     }
 

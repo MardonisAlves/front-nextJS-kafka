@@ -1,54 +1,24 @@
 .main_container {
     min-height: 70vh;
-    background-color: rgb(243, 248, 248);
+    background-color: whitesmoke;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.main_container a {
-    text-decoration: none;
-    color: aliceblue;
-}
-
-.card1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    background-color: rgb(18, 237, 215);
-    min-width: 450px;
+.main_container div {
     margin: 1em;
-    height: 230px;
-    border-radius: 5px;
-    
 }
 
-.card2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    background-color: rgb(42, 42, 46);
-    min-width: 450px;
-    margin: 1em;
-    height: 230px;
-    border-radius: 5px;
-    
+.main_container h5 {
+    color: cornflowerblue;
 }
 
-.card3 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    background-color: rgb(236, 105, 12);
-    min-width: 450px;
-    margin: 1em;
-    height: 230px;
-    border-radius: 5px;
-    
+.main_container svg {
+    color: rgb(10, 44, 148);
 }
+
+
 
 

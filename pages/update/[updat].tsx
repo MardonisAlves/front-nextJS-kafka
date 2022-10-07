@@ -2,13 +2,33 @@ import styles from '../../styles/User.module.css';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import {ToastContainer, toast} from 'react-toastify';
+import {GetServerSideProps} from 'next'
 import 'react-toastify/dist/ReactToastify.css';
 import {UpdateCliente, getClienteEmail} from '../../src/services/AuthService';
+import { parseCookies } from 'nookies';
 
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const {['nextauth.token']: token} = parseCookies(ctx);
+
+  if(!token){
+    return {
+      redirect:{
+        destination:'/',
+        permanent:false
+      }
+      
+    }
+  }
+
+  return {
+    props:{}
+  }
+  
+}
 
 export default function Update() {
   const { query } = useRouter();
-  const [queryemail, setQueryEmail] = useState(query.updat);
+  const [queryemail, setQueryEmail] = useState<any>(query.updat);
   const [msg, setMsg] = useState('');
   const [first_name, setFirstname] = useState('');
   const [last_name, setLastname] = useState('');
@@ -37,8 +57,8 @@ export default function Update() {
     setId('')
   }
 
-  const handleSubmit = async (event) => {
-    const errnotify = async (msg) => toast.success(msg , {
+  const handleSubmit = async (event:any) => {
+    const errnotify = async (msg:string) => toast.success(msg , {
       position:'top-center',
       theme:'colored'
     });

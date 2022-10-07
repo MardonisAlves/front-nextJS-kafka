@@ -88,6 +88,7 @@ export async function deleteCliente(id:string){
   return await resdata.json();
 }
 
+
 export async function allClientes(){
   const resdata = await fetch(`${url}/all/users`,{
     method: 'GET',
@@ -99,5 +100,21 @@ export async function allClientes(){
   })
   return await resdata.json();
 }
+
+export async function CadastroUser(data:any){
+  const JSONdata = JSON.stringify(data);
+  const resdata = await fetch(`${url}/cadastro/user`,{
+    method: 'POST',
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body:JSONdata
+  })
+  return await resdata.json();
+}
+
+
 
 
