@@ -3,7 +3,7 @@ import { parseCookies } from "nookies";
 import { useState } from "react";
 import {CadastroUser} from './../src/services/AuthService';
 import {ToastContainer} from 'react-toastify';
-import {ToastReact, ToastWarning} from './../src/utils/utils';
+import {ToastSuccess, ToastWarning} from './../src/utils/utils';
 
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -46,7 +46,7 @@ export default function Cadastro() {
     }
     const result = await CadastroUser(data);
     resetCadastro()
-    ToastReact(result.message)
+    ToastSuccess(result.message)
   }
 
   return (
@@ -56,6 +56,7 @@ export default function Cadastro() {
           <form onSubmit={onSubmitCadastrar}>
             <div className="overflow-hidden shadow sm:rounded-md">
               <div className="bg-white px-4 py-5 sm:p-6">
+              <h2>Cadastro Usuário</h2>
                 <div className="col-span-6 sm:col-span-4">
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                     Email address
@@ -65,6 +66,7 @@ export default function Cadastro() {
                     name="email"
                     value={email}
                     id="email"
+                    required
                     autoComplete="email"
                     className="mt-1 block w-full 
                     rounded-md border-gray-300 shadow-sm 
@@ -83,6 +85,7 @@ export default function Cadastro() {
                       name="first_name"
                       value={senha}
                       id="first_name"
+                      required
                       autoComplete="given-name"
                       className="mt-1 block w-full 
                     rounded-md border-gray-300 
@@ -101,6 +104,7 @@ export default function Cadastro() {
                       name="last_name"
                       value={senha_repet}
                       id="last_name"
+                      required
                       autoComplete="family-name"
                       className="mt-1 block w-full 
                     rounded-md border-gray-300 
@@ -127,7 +131,8 @@ export default function Cadastro() {
           </form>
         </div>
       </div>
-     <ToastContainer />
+      <ToastContainer 
+     style={{ width: "600px" }}/>
     </div>
   )
 }

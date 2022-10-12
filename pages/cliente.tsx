@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import {GetServerSideProps} from 'next'
-import {ToastContainer, toast} from 'react-toastify';
+import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {CadastroCliente} from '../src/services/AuthService';
 import { parseCookies } from 'nookies';
-
+import {ToastWarning} from './../src/utils/utils'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const {['nextauth.token']: token} = parseCookies(ctx);
@@ -39,10 +39,6 @@ export default function Cliente() {
   }
 
   const handleSubmit = async (event:any) => {
-    const errnotify = async (msg:string) => toast.success(msg , {
-      position:'top-center',
-      theme:'colored'
-    });
     event.preventDefault()
     const data = {
       first_name: first_name,
@@ -53,7 +49,7 @@ export default function Cliente() {
     
     const  result = await  CadastroCliente(data);
     resetInputs()
-    errnotify(result.message)
+    ToastWarning(result.message)
   }
   
   return (
@@ -63,6 +59,7 @@ export default function Cliente() {
         <form onSubmit={handleSubmit}>
           <div className="overflow-hidden shadow sm:rounded-md">
             <div className="bg-white px-4 py-5 sm:p-6">
+            <h2>Cadastro Cliente</h2>
               <div className="grid grid-cols-8 gap-6">
                 <div className="col-span-6 sm:col-span-3">
                   <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
@@ -73,6 +70,7 @@ export default function Cliente() {
                     name="first_name"
                     value={first_name}
                     id="first_name"
+                    required
                     autoComplete="given-name"
                     className="mt-1 block w-full 
                     rounded-md border-gray-300 
@@ -91,6 +89,7 @@ export default function Cliente() {
                     name="last_name"
                     value={last_name}
                     id="last_name"
+                    required
                     autoComplete="family-name"
                     className="mt-1 block w-full 
                     rounded-md border-gray-300 
@@ -109,6 +108,7 @@ export default function Cliente() {
                     name="email"
                     value={email}
                     id="email"
+                    required
                     autoComplete="email"
                     className="mt-1 block w-full 
                     rounded-md border-gray-300 shadow-sm 
@@ -126,6 +126,7 @@ export default function Cliente() {
                     value={phone}
                     name="phone"
                     id="phone"
+                    required
                     autoComplete="phone"
                     className="mt-1 block w-full 
                     rounded-md border-gray-300 shadow-sm 
@@ -153,7 +154,8 @@ export default function Cliente() {
         </form>
       </div>
     </div>
-    <ToastContainer />
+    <ToastContainer 
+     style={{ width: "600px" }}/>
   </div>
   )
 }

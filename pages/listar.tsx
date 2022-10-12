@@ -46,39 +46,11 @@ export default function Listar() {
         event.preventDefault();
         const result = await deleteCliente(id);
         setMsg(result.message)
-        await errnotify(smg)
+        errnotify(result.message)
     }
 
     return (
         <>
-            {/* <table className={styles.table}>
-                <thead>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Action</th>
-                </thead>
-                <tbody>
-                    { data.length ? data.map((item: any, index) => {
-                        return <>
-                            <tr>
-                                <td key={index + 1}>{item.first_name}</td>
-                                <td key={index + 2}>{item.email}</td>
-                                <td key={index + 3}>
-                                    <Link href={"/update/" + item.email}>
-                                        <a id={styles.update}>Update</a>
-                                    </Link>
-                                    <Link href="#">
-                                        <a id={styles.delete} onClick={(e) => deleteCliete(item.user_id, e)}>Delete</a>
-                                    </Link>
-                                </td>
-                            </tr>
-                        </>
-
-                    }) : ''}
-                </tbody>
-            </table> */}
-
-
             <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -105,7 +77,8 @@ export default function Listar() {
                                        {item.first_name} {item.last_name}
                                     </td>
                                     <td className="py-4 px-6">
-                                        <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        <a href={"/update/" + item.email} className="m-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        <a href="#" onClick={(e) => deleteCliete(item.user_id, e)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
                                     </td>
                                 </tr>
                             </>

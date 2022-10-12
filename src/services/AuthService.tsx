@@ -1,5 +1,5 @@
 import { Login } from "../interfaces/auth.interface";
-import { parseCookies } from "nookies";
+import { parseCookies, destroyCookie } from "nookies";
 
 const { 'nextauth.token': token } = parseCookies();
 const url = `http://localhost:3001/api/v1`;
@@ -113,6 +113,13 @@ export async function CadastroUser(data:any){
     body:JSONdata
   })
   return await resdata.json();
+}
+
+export async function Logout(){
+  destroyCookie(null , 'nextauth.token');
+  destroyCookie(null , 'status');
+  destroyCookie(null , 'email');
+  window.location.href = '/'
 }
 
 
