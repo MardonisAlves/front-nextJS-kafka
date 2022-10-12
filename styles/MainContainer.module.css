@@ -1,6 +1,6 @@
 .main_container {
-    min-height: 70vh;
-    background-color: whitesmoke;
+    min-height: 90vh;
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,12 +11,15 @@
     margin: 1em;
 }
 
+
+
 .main_container h5 {
     color: cornflowerblue;
 }
 
+
 .main_container svg {
-    color: rgb(10, 44, 148);
+    color: rgb(74, 71, 70);
 }
 
 
