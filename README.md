@@ -36,7 +36,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## SWagger
 <p>
 Api getway para obter rotas e authenticação e enviar as mensagens para p broadcasr KAFKA
-<a href="https://github.com/MardonisAlves/getway-kafka">
+(https://github.com/MardonisAlves/getway-kafka) reference.
 </p>
 <img src="/public/swagger.png" />
 
