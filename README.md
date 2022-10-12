@@ -34,7 +34,13 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## SWagger
+<p>
+Api getway para obter rotas e authenticação e enviar as mensagens para p broadcasr KAFKA
+<a href="https://github.com/MardonisAlves/getway-kafka">
+</p>
 <img src="/public/swagger.png" />
+
+
 
 ## Page Login
 <img src="/public/login.png" />
