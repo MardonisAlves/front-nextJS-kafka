@@ -1,3 +1,4 @@
+import { Component } from "react";
 export interface Login{
     email:string;
     senha:string;
@@ -16,6 +17,13 @@ export interface AuthContextType  {
 
 export interface UserInformation{
     id:string;
+}
+
+export interface LayoutProps{
+    children:JSX.Element,
+    Component?:Component,
+    pageProps?:any 
+
 }
 
 

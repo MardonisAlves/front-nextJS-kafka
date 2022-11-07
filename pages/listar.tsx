@@ -87,7 +87,7 @@ export default function Listar() {
                 </table>
             </div>
 
-            <ToastContainer />
+            <ToastContainer style={{width:'600px'}}/>
         </>
     )
 }

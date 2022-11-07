@@ -15,6 +15,16 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/footer/footer.js", "components/layout.tsx", "pages/user.tsx", "pages/home.tsx", "pages/_app.js", "components/main/main.js", "components/header/header.js", "src/context/AuthContext.jst.jst.jst.jst.jst.js"],
+  "include": [
+    "next-env.d.ts", 
+  "**/*.ts", 
+  "**/*.tsx", 
+  "components/footer/footer.tsx", 
+  "components/layout.tsx", 
+  "pages/user.tsx", 
+  "pages/home.tsx", 
+  "pages/_app.tsx",
+   "components/header/header.tsx", 
+   "src/context/AuthContext.jst.jst.jst.jst.jst.js"],
   "exclude": ["node_modules"]
 }

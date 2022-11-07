@@ -4,7 +4,7 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {CadastroCliente} from '../src/services/AuthService';
 import { parseCookies } from 'nookies';
-import {ToastWarning} from './../src/utils/utils'
+import {ToastSuccess} from './../src/utils/utils'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const {['nextauth.token']: token} = parseCookies(ctx);
@@ -49,7 +49,7 @@ export default function Cliente() {
     
     const  result = await  CadastroCliente(data);
     resetInputs()
-    ToastWarning(result.message)
+    ToastSuccess(result.message)
   }
   
   return (
